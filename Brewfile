@@ -9,6 +9,7 @@ brew "cue"
 brew "helm"
 brew "kustomize"
 brew "kubeconform"
+brew "k9s"
 
 # OCI tools
 brew "oras"

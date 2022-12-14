@@ -39,10 +39,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - source.flux.local
+        - source.flux.local.gd
       secretName: source-ingress-tls
   rules:
-    - host: source.flux.local
+    - host: source.flux.local.gd
       http:
         paths:
           - path: /

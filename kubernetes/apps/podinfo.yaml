@@ -41,10 +41,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - podinfo.flux.local
+        - podinfo.flux.local.gd
       secretName: podinfo-ingress-tls
   rules:
-    - host: podinfo.flux.local
+    - host: podinfo.flux.local.gd
       http:
         paths:
           - path: /

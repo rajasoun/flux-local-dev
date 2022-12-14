@@ -18,11 +18,16 @@ sync: flux-push ## Build, push and reconcile the manifests
 
 .PHONY: check
 check: ## Check if the NGINX ingress self-signed TLS works
-	curl --insecure https://podinfo.flux.local
+	curl --insecure https://podinfo.flux.local.gd
 
-.PHONY: tools
-tools: ## Install Kubernetes kind, kubectl, FLux CLI and other tools with Homebrew
+.PHONY: install-tools
+install-tools: ## Install Kubernetes kind, kubectl, FLux CLI and other tools with Homebrew
 	brew bundle
+
+.PHONY: uninstall-tools
+uninstall-tools: ## UnInstall Kubernetes kind, kubectl, FLux CLI and other tools with Homebrew
+	fetch --repo https://github.com/rajasoun/mac-onboard --branch main --source-path /packages/Brewfile  /tmp/Brewfile 
+	brew bundle --file  /tmp/Brewfile --force cleanup
 
 .PHONY: validate
 validate: ## Validate the Kubernetes manifests (including Flux custom resources)

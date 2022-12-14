@@ -27,12 +27,12 @@ verifies that the OCI artifacts are signed by the Flux team with Cosign and GitH
 | [Kubernetes KIND](https://kind.sigs.k8s.io/)                                                             | Local cluster                   | Binds to port 80 and 443    |
 | [Docker Registry](https://docs.docker.com/registry/)                                                     | Local registry                  | Binds to port 5050          |
 | [Flux](https://fluxcd.io)                                                                                | Cluster reconciler              | -                           |
-| [ingress-nginx](https://github.com/kubernetes/ingress-nginx)                                             | Ingress for `*.flux.local`      | -                           |
+| [ingress-nginx](https://github.com/kubernetes/ingress-nginx)                                             | Ingress for `*.flux.local.gd`      | -                           |
 | [cert-manager](https://github.com/cert-manager/cert-manager)                                             | Self-signed ingress certs       | -                           |
 | [metrics-server](https://github.com/kubernetes-sigs/metrics-server)                                      | Container resource metrics      | -                           |
-| [kube-prometheus-stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack) | Prometheus Operator and Grafana | Binds to grafana.flux.local |
-| [weave-gitops](https://github.com/weaveworks/weave-gitops)                                               | Flux UI                         | Binds to ui.flux.local      |
-| [podinfo](https://github.com/stefanprodan/podinfo)                                                       | Demo app                        | Binds to podinfo.flux.local |
+| [kube-prometheus-stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack) | Prometheus Operator and Grafana | Binds to grafana.flux.local.gd |
+| [weave-gitops](https://github.com/weaveworks/weave-gitops)                                               | Flux UI                         | Binds to ui.flux.local.gd      |
+| [podinfo](https://github.com/stefanprodan/podinfo)                                                       | Demo app                        | Binds to podinfo.flux.local.gd |
 
 The Docker registry is exposed on the local machine on `localhost:5050` and inside the cluster
 on `kind-registry:5000`. The registry servers two purposes:
@@ -67,7 +67,7 @@ cd flux-local-dev
 Install Kubernetes kind, kubectl, flux and other CLI tools with Homebrew:
 
 ```shell
-make tools
+make install-tools
 ```
 
 The complete list of tools can be found in the `Brewfile`.
@@ -93,6 +93,7 @@ The `make up` command performs the following steps:
 
 ### Access Flux UI
 
+<!-- 
 ![flux-ui](docs/img/weave-gitops.png)
 
 Add the following domains to `/etc/hosts`:
@@ -101,7 +102,8 @@ Add the following domains to `/etc/hosts`:
 127.0.0.1 podinfo.flux.local
 127.0.0.1 grafana.flux.local
 127.0.0.1 ui.flux.local
-```
+``` 
+-->
 
 Verify that the NGINX ingress self-signed TLS works:
 
@@ -111,11 +113,11 @@ make check
 
 Access the Flux UI and Grafana using the username `admin` and password `flux`:
 
-- [http://ui.flux.local/applications](http://ui.flux.local/applications)
-- [http://grafana.flux.local/d/flux-control-plane](http://grafana.flux.local/d/flux-control-plane/flux-control-plane?orgId=1&refresh=10s)
-- [http://grafana.flux.local/d/flux-cluster](http://grafana.flux.local/d/flux-cluster/flux-cluster-stats?orgId=1&refresh=10s)
+- [http://ui.flux.local.gd/applications](http://ui.flux.local.gd/applications)
+- [http://grafana.flux.local.gd/d/flux-control-plane](http://grafana.flux.local.gd/d/flux-control-plane/flux-control-plane?orgId=1&refresh=10s)
+- [http://grafana.flux.local.gd/d/flux-cluster](http://grafana.flux.local.gd/d/flux-cluster/flux-cluster-stats?orgId=1&refresh=10s)
 
-Access the demo application on [http://podinfo.flux.local](http://ui.flux.local/).
+Access the demo application on [http://podinfo.flux.local.gd](http://ui.flux.local.gd/).
 
 ### Sync local changes
 

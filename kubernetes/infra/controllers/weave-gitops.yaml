@@ -78,10 +78,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - ui.flux.local
+        - ui.flux.local.gd
       secretName: grafana-ingress-tls
   rules:
-    - host: ui.flux.local
+    - host: ui.flux.local.gd
       http:
         paths:
           - path: /

@@ -36,7 +36,7 @@ app: podinfo.#App & {
 		ingress: {
 			enabled:   true
 			className: "nginx"
-			host:      "podinfo.flux.local"
+			host:      "podinfo.flux.local.gd"
 			tls:       true
 			annotations: {
 				"nginx.ingress.kubernetes.io/ssl-redirect":       "false"
